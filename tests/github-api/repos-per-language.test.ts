@@ -67,7 +67,7 @@ const error = {
     ]
 };
 
-const dataContainingLanguageWithWhiteSpace =  {
+const dataContainingLanguageWithWhiteSpace = {
     data: {
         user: {
             repositories: {
@@ -104,7 +104,7 @@ const dataContainingLanguageWithWhiteSpace =  {
             }
         }
     }
-}
+};
 
 afterEach(() => {
     mock.reset();
@@ -133,9 +133,8 @@ describe('repos per language on github', () => {
     });
 
     it('should do a case-insensitive comparison for language exclusion', async () => {
-        mock.onPost('https://api.github.com/graphql')
-            .reply(200, dataContainingLanguageWithWhiteSpace);
-        const repoData = await getRepoLanguages('vn7n24fzkq', ['rust','jupyter notebook']);
+        mock.onPost('https://api.github.com/graphql').reply(200, dataContainingLanguageWithWhiteSpace);
+        const repoData = await getRepoLanguages('vn7n24fzkq', ['rust', 'jupyter notebook']);
         expect(repoData).toEqual({
             languageMap: new Map([
                 ['Kotlin', {color: '#f18e33', count: 1, name: 'Kotlin'}],

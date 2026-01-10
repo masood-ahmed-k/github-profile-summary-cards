@@ -100,8 +100,7 @@ describe('commit contributions on github', () => {
     });
 
     it('should do a case-insensitive comparison for language exclusion', async () => {
-        mock.onPost('https://api.github.com/graphql')
-            .reply(200, data);
+        mock.onPost('https://api.github.com/graphql').reply(200, data);
         const repoData = await getCommitLanguage('vn7n24fzkq', ['jupyter notebook']);
         expect(repoData).toEqual({
             languageMap: new Map([

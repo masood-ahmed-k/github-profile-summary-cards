@@ -3,7 +3,6 @@ import request from '../utils/request';
 export class ProfileDetails {
     id: number; // user id
     name: string;
-    email: string;
     createdAt: string;
     company: string | null = null;
     websiteUrl: string | null = null;
@@ -16,10 +15,9 @@ export class ProfileDetails {
     totalRepositoryContributions: number = 0;
     contributions: ProfileContribution[] = [];
     contributionYears: number[] = [];
-    constructor(id: number, name: string, email: string, createdAt: string) {
+    constructor(id: number, name: string, createdAt: string) {
         this.id = id;
         this.name = name;
-        this.email = email;
         this.createdAt = createdAt;
     }
 }
@@ -46,7 +44,6 @@ const fetcher = (token: string, variables: any) => {
         user(login: $login) {
             id
             name
-            email
             createdAt
             twitterUsername
             company
@@ -99,7 +96,7 @@ export async function getProfileDetails(username: string, token: string): Promis
     }
 
     const user = res.data.data.user;
-    const profileDetails = new ProfileDetails(user.id, user.name, user.email, user.createdAt);
+    const profileDetails = new ProfileDetails(user.id, user.name, user.createdAt);
     profileDetails.totalPublicRepos = user.repositories.totalCount;
     profileDetails.totalStars = user.repositories.nodes.reduce(
         (stars: number, curr: {stargazers: {totalCount: number}}) => {

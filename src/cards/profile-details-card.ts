@@ -128,15 +128,7 @@ const getProfileDetailsData = async function (
         }
     ];
 
-    // hard code here, cuz I'm lazy
-    if (profileDetails.email) {
-        userDetails.push({
-            index: 3,
-            icon: Icon.EMAIL,
-            name: 'Email',
-            value: profileDetails['email']
-        });
-    } else if (profileDetails.company) {
+    if (profileDetails.company) {
         userDetails.push({
             index: 3,
             icon: Icon.COMPANY,
